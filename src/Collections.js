@@ -18,9 +18,13 @@ const Collections  = ({ loading, error, data, networkStatus } ) => {
 
 
     if (data && data.collections) {
-        return data.collections.map(currentCollection => (
-            <Collection key={`collection-${currentCollection.id}`} collection={currentCollection} />
-        ));
+        return (<ul className="list-group">
+            {
+                data.collections.map(currentCollection => (
+                    <Collection key={`collection-${currentCollection.id}`} collection={currentCollection} />
+                )    
+            )}
+        </ul>);
     } else {
         return <div>Something went wrong</div>
     }

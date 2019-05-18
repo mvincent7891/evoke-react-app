@@ -6,7 +6,7 @@ const App = () => {
   return (
   <div className="container">
     <nav className="navbar navbar-dark bg-primary">
-      <div className="navbar-brand">Evoke React/Apollo Frontend</div>
+      <a href="/" className="navbar-brand">Evoke React/Apollo Frontend</a>
     </nav>
     <div>
       <Collections />
