@@ -1,17 +1,26 @@
 import React from "react";
 import "./App.css";
-import Collections from "./Collections";
+import EntryList from "./Entry/EntryList";
+import CollectionList from "./Collection/CollectionList";
+import Navbar from "./Navbar/Navbar";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 
 const App = () => {
   return (
-  <div className="container">
-    <nav className="navbar navbar-dark bg-primary">
-      <a href="/" className="navbar-brand">Evoke React/Apollo Frontend</a>
-    </nav>
-    <div>
-      <Collections />
+    <div className="pure-g">
+      <Router>
+        <div className="pure-u-1-8"/>
+        <div className="pure-u-3-4">
+          <Navbar />
+          <Route path="/" exact component={CollectionList} />
+          <Route path="/collections/" component={CollectionList} />
+          <Route path="/entries/" component={EntryList} />
+        </div>
+        <div className="pure-u-1-8"/>
+      </Router>
     </div>
-  </div>
+
 )};
 
 export default App;
