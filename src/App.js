@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import EntryList from "./Entry/EntryList";
+import EntryApp from "./Entry/EntryApp";
 import CollectionList from "./Collection/CollectionList";
 import Navbar from "./Navbar/Navbar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -15,7 +15,7 @@ const App = () => {
           <Navbar />
           <Route path="/" exact component={CollectionList} />
           <Route path="/collections/" component={CollectionList} />
-          <Route path="/entries/" component={EntryList} />
+          <Route path="/entries/" component={EntryApp} />
         </div>
         <div className="pure-u-1-8"/>
       </Router>

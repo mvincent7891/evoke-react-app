@@ -9,13 +9,13 @@ const EntryList  = ({ loading, error, data } ) => {
 
 
     if (data && data.entries) {
-        return (<ul className="list-group">
+        return (<div>
             {
                 data.entries.map(currentEntry => (
                     <Entry key={`entry-${currentEntry.id}`} entry={currentEntry} />
                 )    
             )}
-        </ul>);
+        </div>);
     } else {
         return <div/>
     }

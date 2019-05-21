@@ -9,13 +9,13 @@ const CollectionList  = ({ loading, error, data } ) => {
 
 
     if (data && data.collections) {
-        return (<ul className="list-group">
+        return (<div className="list-group">
             {
                 data.collections.map(currentCollection => (
                     <Collection key={`collection-${currentCollection.id}`} collection={currentCollection} />
                 )    
             )}
-        </ul>);
+        </div>);
     } else {
         return <div/>
     }
