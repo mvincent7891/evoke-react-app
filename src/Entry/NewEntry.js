@@ -8,6 +8,7 @@ class NewEntry extends React.Component {
     super(props)
     this.termInput = null;
     this.definitionInput = null;
+    this.collectionSelect = null;
   }
 
   handleNewEntrySubmission() {
@@ -20,13 +21,17 @@ class NewEntry extends React.Component {
 
     const collections = (data && data.collections) || [];
 
-    return  (<select id="collection">
-      { collections.map(c => <option key={`collection-option-${c.id}`}>{c.title}</option>) }
+    return  (<select 
+                id="collection"
+                ref={node => {
+                  this.collectionSelect = node;
+                }}
+              >
+      { collections.map(c => <option key={`collection-option-${c.id}`} value={c.id}>{c.title}</option>) }
     </select>);
   }
 
   render() {
-
     return (
       <Mutation mutation={NEW_ENTRY_MUTATION}>
         {(addEntry, { data }) => (
@@ -34,11 +39,15 @@ class NewEntry extends React.Component {
             className="pure-form"
             onSubmit={e => {
               e.preventDefault();
-              addEntry({ variables: { 
+              const selectComponent = this.collectionSelect;
+              const collectionId = selectComponent.options[selectComponent.selectedIndex].value;
+              const variables = { 
                 term: this.termInput.value,
                 definition: this.definitionInput.value,
+                collectionId: parseInt(collectionId),
                 source: 'source'
-              } });
+              }
+              addEntry({ variables });
               this.definitionInput.value = "";
               this.termInput.value = "";
             }}

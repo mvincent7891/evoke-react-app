@@ -4,11 +4,13 @@ const NEW_ENTRY_MUTATION = gql`
   mutation(
     $term: String!,
     $definition: String!,
+    $collectionId: Int!,
     $source: String!
   ) {
     create_definition(
       term: $term,
       definition: $definition,
+      collectionId: $collectionId,
       source: $source
     ) {
       term: term
