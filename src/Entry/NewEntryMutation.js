@@ -15,8 +15,8 @@ const NEW_ENTRY_MUTATION = gql`
       source: $source,
       lexical_category: $lexicalCategory
     ) {
-      term: term
-      definition: definition
+      term
+      definition
     }
   }
 `

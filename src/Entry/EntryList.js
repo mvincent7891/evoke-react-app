@@ -9,13 +9,21 @@ const EntryList  = ({ loading, error, data } ) => {
 
 
     if (data && data.entries) {
-        return (<div>
-            {
-                data.entries.map(currentEntry => (
-                    <Entry key={`entry-${currentEntry.id}`} entry={currentEntry} />
-                )    
-            )}
-        </div>);
+        return (
+            <form
+            className="pure-form">
+                <fieldset>
+                    <legend>Current entries:</legend>
+                    <div>
+                        {
+                            data.entries.map(currentEntry => (
+                                <Entry key={`entry-${currentEntry.id}`} entry={currentEntry} />
+                            )    
+                        )}
+                    </div>
+                </fieldset>
+            </form>
+        );
     } else {
         return <div/>
     }

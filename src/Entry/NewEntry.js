@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, Mutation } from 'react-apollo'
 import COLLECTION_LIST_QUERY from "../Collection/CollectionListQuery"
 import NEW_ENTRY_MUTATION from "./NewEntryMutation"
+import ENTRY_LIST_QUERY from "./EntryListQuery"
 
 class NewEntry extends React.Component {
   constructor(props) {
@@ -70,7 +71,12 @@ class NewEntry extends React.Component {
                 source: 'user',
                 lexicalCategory: lexicalCategory
               }
-              addEntry({ variables });
+              addEntry({
+                variables,
+                refetchQueries: [{
+                  query: ENTRY_LIST_QUERY
+                }]
+              });
               this.definitionInput.value = "";
               this.termInput.value = "";
             }}

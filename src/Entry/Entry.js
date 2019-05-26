@@ -1,10 +1,35 @@
 import React from 'react';
+import DELETE_ENTRY_MUTATION from './DeleteEntryMutation';
+import ENTRY_LIST_QUERY from './EntryListQuery';
+import { Mutation } from 'react-apollo';
 
+
+        
 const Entry = (props) => (
-    <div className="pure-g">
-        <div className="pure-u-1-8"><p>{`Entry ${props.entry.id}`}</p></div>
-        <div className="pure-u-1-8"><p>{`${props.entry.item.term}`}</p></div>
-        <div className="pure-u-3-4"><p>{`${props.entry.item.definition}`}</p></div>
-    </div>
+    <Mutation mutation={DELETE_ENTRY_MUTATION}>
+        {(deleteEntry, { data }) => {
+            const deleteEntryHandler = () => {
+                deleteEntry({
+                    variables: {
+                        id: parseInt(props.entry.id)
+                    },
+                    refetchQueries: [{
+                        query: ENTRY_LIST_QUERY
+                    }]
+                });
+            }
+            return (<div className="pad-5 pure-g">
+                <div className="pure-u-1-8">
+                    <button onClick={deleteEntryHandler} className="button-small pure-button"><i className="fa fa-trash fa-sm"></i></button>
+                </div>
+                <div className="pure-u-1-8">{`Entry ${props.entry.id}`}</div>
+                <div className="pure-u-1-8">{`${props.entry.item.term}`}</div>
+                <div className="pure-u-1-8">{`${props.entry.item.lexical_category}`}</div>
+                <div className="pure-u-3-8">{`${props.entry.item.definition}`}</div>
+            </div>)
+        }}
+    </Mutation>
+
 );
+
 export default Entry;

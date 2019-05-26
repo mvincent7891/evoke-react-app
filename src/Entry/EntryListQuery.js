@@ -8,6 +8,7 @@ const ENTRY_LIST_QUERY = gql`
             term
             definition
             item_type
+            lexical_category
         }
         collection {
             id
