@@ -5,13 +5,15 @@ const NEW_ENTRY_MUTATION = gql`
     $term: String!,
     $definition: String!,
     $collectionId: Int!,
-    $source: String!
+    $source: String!,
+    $lexicalCategory: String!
   ) {
     create_definition(
       term: $term,
       definition: $definition,
-      collectionId: $collectionId,
-      source: $source
+      collection_id: $collectionId,
+      source: $source,
+      lexical_category: $lexicalCategory
     ) {
       term: term
       definition: definition

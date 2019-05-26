@@ -9,6 +9,7 @@ class NewEntry extends React.Component {
     this.termInput = null;
     this.definitionInput = null;
     this.collectionSelect = null;
+    this.lexicalCategorySelect = null;
   }
 
   handleNewEntrySubmission() {
@@ -31,6 +32,23 @@ class NewEntry extends React.Component {
     </select>);
   }
 
+  renderLexicalCategorySelection() {
+    const categories = [
+      'noun', 'adjective', 'verb', 'adverb'
+    ];
+
+    return  (<select 
+                id="lexical"
+                ref={node => {
+                  this.lexicalCategorySelect = node;
+                }}
+              >
+      { categories.map(category => (<option key={`lexical-option-${category}`} value={category}>
+        {category}
+      </option>)) }
+    </select>);
+  }
+
   render() {
     return (
       <Mutation mutation={NEW_ENTRY_MUTATION}>
@@ -39,13 +57,18 @@ class NewEntry extends React.Component {
             className="pure-form"
             onSubmit={e => {
               e.preventDefault();
-              const selectComponent = this.collectionSelect;
+              let selectComponent = this.collectionSelect;
               const collectionId = selectComponent.options[selectComponent.selectedIndex].value;
+
+              selectComponent = this.lexicalCategorySelect;
+              const lexicalCategory = selectComponent.options[selectComponent.selectedIndex].value;
+
               const variables = { 
                 term: this.termInput.value,
                 definition: this.definitionInput.value,
                 collectionId: parseInt(collectionId),
-                source: 'source'
+                source: 'user',
+                lexicalCategory: lexicalCategory
               }
               addEntry({ variables });
               this.definitionInput.value = "";
@@ -54,8 +77,11 @@ class NewEntry extends React.Component {
           >
               <fieldset>
                   <legend>Create new entry:</legend>
-                  <div className="pad-5 pure-u-1-8">
+                  <div className="pad-5 pure-u">
                     { this.renderCollectionSelection() }
+                  </div>
+                  <div className="pad-5 pure-u">
+                    { this.renderLexicalCategorySelection() }
                   </div>
                   <div className="pad-5 pure-u-1-8">
                       <input
