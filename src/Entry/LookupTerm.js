@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo'
 import LOOKUP_TERM_QUERY from "./LookupTermQuery"
-import Definition from "./Definition"
+import DefinitionContainer from "./DefinitionContainer"
 
 class LookupTerm extends React.Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class LookupTerm extends React.Component {
             </form>
             <div>
               {
-                data && data.lookup && data.lookup.map(term => <Definition term={term}/>)
+                data && data.lookup && data.lookup.map((term, idx) => <DefinitionContainer key={`definition-${idx}`} {...term}/>)
               }
             </div>
           </div>

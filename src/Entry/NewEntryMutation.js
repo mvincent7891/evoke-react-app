@@ -4,7 +4,7 @@ const NEW_ENTRY_MUTATION = gql`
   mutation(
     $term: String!,
     $definition: String!,
-    $collectionId: Int!,
+    $collectionId: Int,
     $source: String!,
     $lexicalCategory: String!
   ) {

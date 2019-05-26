@@ -8,7 +8,8 @@ import { Mutation } from 'react-apollo';
 const Entry = (props) => (
     <Mutation mutation={DELETE_ENTRY_MUTATION}>
         {(deleteEntry, { data }) => {
-            const deleteEntryHandler = () => {
+            const deleteEntryHandler = (e) => {
+                e.preventDefault()
                 deleteEntry({
                     variables: {
                         id: parseInt(props.entry.id)
