@@ -3,7 +3,7 @@ import React from 'react';
 const Definition = (props) => (
   <div className="pad-5 pure-g">
     <div className="pure-u-1-8">
-        <button onClick={props.addEntry} className="button-small pure-button"><i className="fa fa-plus fa-sm"></i></button>
+        <button onClick={props.addEntry} className={`${(props.collections.length > 0) && 'pure-button-disabled'} button-small pure-button`}><i className="fa fa-plus fa-sm"></i></button>
     </div>
     <div className="pure-u-1-8">{`${props.term}`}</div>
     <div className="pure-u-1-8">{`${props.lexical_category}`}</div>

@@ -7,6 +7,8 @@ const LOOKUP_TERM_QUERY = gql`
       definition
       lexical_category
       source
+      hashed_def
+      collections
     }
   }
 `
