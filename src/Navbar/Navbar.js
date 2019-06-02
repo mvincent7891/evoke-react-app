@@ -6,10 +6,13 @@ const Navbar = () => (
         <Link className=" pure-menu-heading pure-menu-link" to={"/"}>EVOKE</Link>
         <ul className="pure-menu-list">
             <li className="pure-menu-item">
-            <Link className="pure-menu-link" to={"/collections"}>Collections</Link>
+                <Link className="pure-menu-link" to={"/collections"}>Collections</Link>
             </li>
             <li className="pure-menu-item">
                 <Link className="pure-menu-link" to={"/entries"}>Entries</Link>
+            </li>
+            <li className="pure-menu-item">
+                <Link className="pure-menu-link" to={"/keywords"}>Keywords</Link>
             </li>
         </ul>
     </div>
